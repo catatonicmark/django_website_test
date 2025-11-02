@@ -1,10 +1,11 @@
-{% load static %}
+{% load imagefit %}
 <!DOCTYPE html>
 <html>
 <body>
 
-<img src="{% static 'ryler.jpeg' %}">
-
-
+<img src="{{ "ryler.jpeg"|static_resize:'1152x864' }}" />
+<div>
+  <input type="checkbox">
+</div>
 </body>
 </html>

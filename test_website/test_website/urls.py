@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth.models import User
-from django.urls import include, path
+from django.urls import include, path, re_path
 from rest_framework import routers, serializers, viewsets
 from django.conf import settings
 from django.conf.urls.static import static
@@ -40,4 +40,6 @@ urlpatterns = [
     path("", include(router.urls)),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("testapp/", include("testapp.urls")),
+    path("habit_tracker/", include("habit_tracker.urls")),
+    re_path(r'^imagefit/', include('imagefit.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

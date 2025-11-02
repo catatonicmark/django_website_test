@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "habit_tracker",
+    "imagefit",
     "testapp",
     "rest_framework",
     "django.contrib.admin",
@@ -116,6 +118,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+STATIC_ROOT = "/Users/tylerpruitt/test_website/test_website/"
 STATIC_URL = "static/"
 
 # Default primary key field type
@@ -133,3 +136,5 @@ REST_FRAMEWORK = {
 
 MEDIA_ROOT = "/Users/tylerpruitt/Desktop/images"
 MEDIA_URL = "https://media.test_website.com/"
+
+IMAGEFIT_ROOT = "/Users/tylerpruitt/test_website/test_website/testapp/"
