@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <header>
+    <h1>Habit Tracker</h1>
+  </header>
+  <body>
+    <div>
+      <table id="tracker">
+        <tr>
+          <th>Completed?</th>
+          <th>Habit Name</th>
+          <th>Date</th>
+          <th>Length of Activity</th>
+        </tr>
+        <script src="{% static 'js/timer.js' %}"></script>
+        <tr>
+          <td><input type="checkbox" name="completed"></td>
+          <td><input type="text" name="habit_name"></td>
+          <td><input type="date" name="date_completed"></td>
+          <td><button type="button" id="timeDisplay" onclick="startTimer()">Start Timer</button></td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <script src="{% static 'js/addRow.js' %}"></script>
+      <button onclick="addRow('tracker')">Add Habit</button>
+    </div>
+  </body>
+</html>
