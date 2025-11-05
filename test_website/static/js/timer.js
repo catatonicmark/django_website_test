@@ -1,14 +1,21 @@
 running = false;
+let startTime = 0;
+let intervalId;
 
-function startTimer() {
-  running = true;
-  const start = Date.now();
-  console.log("starting timer...");
+function startTimer(start) {
+  if (!running) {
+    return timer(start);
+    const startTime = Date.now();
+    console.log("Starting timer...");
+  
+  intervalId = setInterval(() => {
+      const diff = Date.now()
+    })
+  }
+}
 
-  setTimeout(() => {
-    const ms = Date.now() - start;
-    display = Math.floor(ms / 1000)
-
-    document.getElementById('timeDisplay').innerHTML = display;
-  }, 2000);
+function timer(start) {
+  diff = Date.now() - start;
+  display = Math.floor(ms / 1000);
+  document.getElementById('timeDisplay').innerHTML = display;
 }
