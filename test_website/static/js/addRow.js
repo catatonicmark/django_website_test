@@ -1,10 +1,18 @@
 function addRow(id)
 {
-  var x = document.getElementById(id).tBodies[0];
-  var node = x.rows[1].cloneNode(true);
-  x.appendChild(node);
-  for (let i = 0; i < x[x.lastChild.cells.length]; i++) {
-    const cell = x.lastChild.cells[i];
-    cell.innerHTML = "";
+  var table = document.getElementById(id).tBodies[0];
+  var newRow = table.rows[1].cloneNode(true);
+  for (let i = 0; i < newRow.cells.length; i++) {
+    const cell = newRow.cells[i];
+    const input = cell.firstElementChild;
+    input.value = "";
+    if (input.type === "checkbox") {
+      input.checked = false;
+    }
+    if (input.type === "date") {
+      input.valueAsDate = new Date(); 
+    }
   }
+  table.appendChild(newRow);
+  
 }

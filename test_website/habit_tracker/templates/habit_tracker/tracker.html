@@ -7,7 +7,8 @@
   </header>
   <body>
     <div>
-      <form>
+      <form id= 'habit_table'>
+      <table id= 'tracker'>
         <tr>
           <th>Completed?</th>
           <th>Habit Name</th>
@@ -18,10 +19,14 @@
         <tr>
           <td><input type="checkbox" name="completed"></td>
           <td><input type="text" name="habit_name"></td>
-          <td><input type="date" name="date_completed"></td>
-          <td><button type="button" id="timeDisplay" onclick="startTimer()">Start Timer</button></td>
+          <td><input type="date" id="date" name="date_completed"></td>
+          <td><p type="number" id="timerText" name="time_completed">00:00</p></td>
+          <td><button type="button" id="start-button" onclick="startTimer()">Start Timer</button></td>
+          <td><button type="button" id="stop-button" onclick="startTimer()">Stop Timer</button></td>
+          <script>document.getElementById("date").valueAsDate = new Date();</script>
         </tr>
       </table>
+      </form>
     </div>
     <div>
       <script src="{% static 'js/addRow.js' %}"></script>
