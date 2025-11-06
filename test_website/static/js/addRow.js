@@ -1,3 +1,5 @@
+let rowCounter = 0;
+
 function addRow(id)
 {
   var table = document.getElementById(id).tBodies[0];
