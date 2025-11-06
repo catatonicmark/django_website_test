@@ -2,6 +2,10 @@
 
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset = "UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <header>
     <h1>Habit Tracker</h1>
   </header>
@@ -17,12 +21,12 @@
         </tr>
         <script src="{% static 'js/timer.js' %}"></script>
         <tr>
-          <td><input type="checkbox" name="completed"></td>
-          <td><input type="text" name="habit_name"></td>
-          <td><input type="date" id="date" name="date_completed"></td>           <script>document.getElementById("date").valueAsDate = new Date();</script>
-          <td><p type="number" id="timerText" name="time_completed">00:00</p></td>
-          <td><button type="button" id="start-button" onclick="startStopWatch()">Start Timer</button></td>
-          <td><button type="button" id="stop-button" onclick="stopStopWatch()">Stop Timer</button></td>
+          <td><input type="checkbox" id="completed"></td>
+          <td><input type="text" id="habit_name"></td>
+          <td><input type="date" id="date"></td>           <script>document.getElementById("date").valueAsDate = new Date();</script>
+          <td><p type="number" id="timerText">00:00</p></td>
+          <td><button type="button" id="start-button" class="start-button" >Start Timer</button></td>
+          <td><button type="button" id="stop-button" style="display: none;" class="stop-button" >Stop Timer</button></td>
         </tr>
       </table>
       </form>
