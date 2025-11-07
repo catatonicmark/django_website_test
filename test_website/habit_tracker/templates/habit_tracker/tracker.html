@@ -6,34 +6,39 @@
     <meta charset = "UTF-8">
     <meta name="viewport" content="width-device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <header>
+  </head>
+    <header>
     <h1>Habit Tracker</h1>
   </header>
   <body>
     <div>
-      <form id= 'habit_table'>
-      <table id= 'tracker'>
+      <form id="habit_table">
+      <table id="tracker">
         <tr>
           <th>Completed?</th>
           <th>Habit Name</th>
           <th>Date</th>
           <th>Length of Activity</th>
         </tr>
+        <tbody>
+        <template id="template-row">
+          <tr>
+            <td><input type="checkbox" id="completed"></td>
+            <td><input type="text" id="habit_name"></td>
+            <td><input type="date" id="date"></td>           
+            <td><p type="number" id="timerText">00:00:00</p></td>
+            <td><button type="button" id="start-button" class="start-button">Start Timer</button></td>
+            <td><button type="button" id="stop-button" style="display: none;" class="stop-button">Stop Timer</button></td>
+          </tr>
+        </template>
+        </tbody>
         <script src="{% static 'js/timer.js' %}"></script>
-        <tr>
-          <td><input type="checkbox" id="completed"></td>
-          <td><input type="text" id="habit_name"></td>
-          <td><input type="date" id="date"></td>           <script>document.getElementById("date").valueAsDate = new Date();</script>
-          <td><p type="number" id="timerText">00:00</p></td>
-          <td><button type="button" id="start-button" class="start-button" >Start Timer</button></td>
-          <td><button type="button" id="stop-button" style="display: none;" class="stop-button" >Stop Timer</button></td>
-        </tr>
       </table>
       </form>
     </div>
     <div>
-      <script src="{% static 'js/addRow.js' %}"></script>
-      <button onclick="addRow('tracker')">Add Habit</button>
+      <button onclick="addRow('template-row')">Add Habit</button>
     </div>
+  <script src="{% static 'js/addRow.js' %}"></script>
   </body>
 </html>
