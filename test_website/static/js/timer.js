@@ -17,7 +17,7 @@ buttonListener.addEventListener('click', function(event) {
 
     if (event.target.className === 'stop-button') {
       buttonNumber = buttonId.slice(11);
-            timers[buttonNumber].stopStopWatch();
+      timers[buttonNumber].stopStopWatch();
     }
     
   }
@@ -32,17 +32,18 @@ class Timer{
     this.buttonId = buttonId;
     this.buttonNumber = buttonNumber;
     this.intervalId;
-    this.timeDiff = 0;
+    this.elapsedTime = 0;
+    console.log("new Timer made:", this.buttonNumber)
   }
 
  // starts the stop watch 
   startStopWatch() {
     document.getElementById(this.buttonId).style.display = 'none'; // Hide start-button
     document.getElementById('stop-button' + this.buttonNumber).style.display = 'block'; // Show stop-button
-    
+    console.log("elapsedTime is:", this.elapsedTime);
     this.intervalId = setInterval(() => {
-      this.timeDiff = this.stopTime + Math.floor((new Date() - this.startTime) / 1000);
-      document.getElementById('timerText' + this.buttonNumber).innerText = this.timeDiff;
+      this.elapsedTime = Math.floor((new Date() - this.startTime) / 1000);
+      document.getElementById('timerText' + this.buttonNumber).innerText = this.elapsedTime;
     }, 1000);
    }
 // stops the stopwatch 
@@ -50,8 +51,10 @@ class Timer{
     document.getElementById(this.buttonId).style.display = 'none'; // Hide stop-button
     document.getElementById('start-button' + this.buttonNumber).style.display = 'block'; // Show start-button
     clearInterval(this.intervalId);
-    
-    this.stopTime = this.timeDiff;
+    this.stopTime = this.elapsedTime;
+    this.elapsedTime = 0;
+    console.log("stopTime is", this.stopTime);
+
   }
 
 }
