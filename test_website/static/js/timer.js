@@ -27,20 +27,20 @@ buttonListener.addEventListener('click', function(event) {
 // timer definition
 class Timer{
   constructor(buttonId, buttonNumber) {
-    this.startTime = new Date();
-    this.stopTime = 0;
+    this.startTime = null;
     this.buttonId = buttonId;
     this.buttonNumber = buttonNumber;
-    this.intervalId;
+    this.intervalId = null;
     this.elapsedTime = 0;
-    console.log("new Timer made:", this.buttonNumber)
   }
 
  // starts the stop watch 
   startStopWatch() {
     document.getElementById(this.buttonId).style.display = 'none'; // Hide start-button
     document.getElementById('stop-button' + this.buttonNumber).style.display = 'block'; // Show stop-button
-    console.log("elapsedTime is:", this.elapsedTime);
+
+    this.startTime = new Date() - this.elapsedTime * 1000;
+
     this.intervalId = setInterval(() => {
       this.elapsedTime = Math.floor((new Date() - this.startTime) / 1000);
       document.getElementById('timerText' + this.buttonNumber).innerText = this.elapsedTime;
@@ -51,10 +51,7 @@ class Timer{
     document.getElementById(this.buttonId).style.display = 'none'; // Hide stop-button
     document.getElementById('start-button' + this.buttonNumber).style.display = 'block'; // Show start-button
     clearInterval(this.intervalId);
-    this.stopTime = this.elapsedTime;
-    this.elapsedTime = 0;
-    console.log("stopTime is", this.stopTime);
-
+    this.intervalId = null;
   }
 
 }
