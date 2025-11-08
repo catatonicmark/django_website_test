@@ -12,14 +12,19 @@
   </header>
   <body>
     <div>
-      <form id="habit_table">
-      <table id="tracker">
+      <form action="/habitForm/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type"submit" value="Submit">
+      </form>
         <tr>
           <th>Completed?</th>
           <th>Habit Name</th>
           <th>Date</th>
           <th>Length of Activity</th>
         </tr>
+      <form>
+      <table> 
         <tbody>
         <template id="template-row">
           <tr>
