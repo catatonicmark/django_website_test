@@ -12,38 +12,60 @@
   </header>
   <body>
     <div>
-      <form action="/habitForm/" method="post">
+      <form action="/habit_tracker/" method="post">
         {% csrf_token %}
-        {{ form }}
-        <input type"submit" value="Submit">
-      </form>
-        <tr>
-          <th>Completed?</th>
-          <th>Habit Name</th>
-          <th>Date</th>
-          <th>Length of Activity</th>
-        </tr>
-      <form>
-      <table> 
-        <tbody>
-        <template id="template-row">
-          <tr>
-            <td><input type="checkbox" id="completed"></td>
-            <td><input type="text" id="habit_name"></td>
-            <td><input type="date" id="date"></td>           
-            <td><p type="text" id="timerText">00:00:000</p></td>
-            <td><button type="button" id="start-button" class="start-button">Start Timer</button></td>
-            <td><button type="button" id="stop-button" style="display: none;" class="stop-button">Stop Timer</button></td>
+        {{ formset.management_form}}
+        <table id="habit-table">
+          <thead>
+            <tr>
+              <th>Completed?</th>
+              <th>Habit Name</th>
+              <th>Date</th>
+              <th>Length of Activity</th>
+            </tr>
+          </thead>
+          <tbody id="formset-body">
+            {% for form in formset %}
+              <tr class="formset-row">
+               {% for field in form %}
+                <td>
+                  {{ field }}
+                  {% if field.errors %}
+                    <ul class="errorlist">
+                      {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                </td>
+                {% endfor %}
+              </tr>
+
+              {% if form.non_field_errors %}
+                <tr>
+                  <td colspan="4">
+                    <ul class="errorlist non-field-errors">
+                      {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}
+                    </ul>
+                  </td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <template id="empty-form-template">
+          <tr class="formset-row">
+            {% for field in formset.empty_form %}
+            <td>{{ field }}</td>
+            {% endfor %}
           </tr>
         </template>
-        </tbody>
-        <script src="{% static 'js/timer.js' %}"></script>
-      </table>
+        <button type="button" onclick="addRow('empty-form-template')" id="add-row-btn">Add Row</button>
+        <input type="submit" value="Submit">
       </form>
-    </div>
-    <div>
-      <button onclick="addRow('template-row')">Add Habit</button>
-    </div>
-  <script src="{% static 'js/addRow.js' %}"></script>
-  </body>
+      <script src="{% static 'js/addRow.js' %}" defer></script>
+   </body>
 </html>

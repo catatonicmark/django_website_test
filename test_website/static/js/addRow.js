@@ -15,9 +15,6 @@ function addRow(templateId)
     }
   });
 
-  document.getElementById('tracker').tBodies[0].appendChild(newRow);
+  document.getElementById('habit-table').appendChild(newRow);
 }
 
-
-// initial call of this so first row is automatically populated
-addRow('template-row');
