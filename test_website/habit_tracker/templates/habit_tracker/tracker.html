@@ -39,6 +39,8 @@
                   {% endif %}
                 </td>
                 {% endfor %}
+                <td><button type="button" id="start-button0" class="start-button">Start Timer</button></td>
+                <td><button type="button" id="stop-button0" class="stop-button" style="display: none;">Stop Timer</button></td>
               </tr>
 
               {% if form.non_field_errors %}
@@ -61,11 +63,14 @@
             {% for field in formset.empty_form %}
             <td>{{ field }}</td>
             {% endfor %}
+            <td><button type="button" id="start-button" class="start-button" name="start_button">Start Timer</button></td>
+            <td><button type="button" id="stop-button" class="stop-button" name="stop-button" style="display: none;">Stop Timer</button></td>
           </tr>
         </template>
         <button type="button" onclick="addRow('empty-form-template')" id="add-row-btn">Add Row</button>
         <input type="submit" value="Submit">
       </form>
-      <script src="{% static 'js/addRow.js' %}" defer></script>
+      <script src="{% static 'js/addRow.js' %}"></script>
+      <script src="{% static 'js/timer.js' %}"></script>
    </body>
 </html>

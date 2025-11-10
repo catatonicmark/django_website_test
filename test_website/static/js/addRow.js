@@ -8,8 +8,13 @@ function addRow(templateId)
 
   Array.from(newRow.firstElementChild.children).forEach((child) => {
     
-    child.firstElementChild.id = child.firstElementChild.id + rowCounter;
-
+    child.firstElementChild.id = child.firstElementChild.id.replace("__prefix__", rowCounter)
+    child.firstElementChild.name = child.firstElementChild.name.replace("__prefix__", rowCounter)
+    
+    if (child.firstElementChild.type === 'button') {
+      child.firstElementChild.id = child.firstElementChild.id + rowCounter;
+      child.firstElementChild.name = child.firstElementChild.name + rowCounter;
+    }
     if (child.firstElementChild.type === 'date') {
       child.firstElementChild.valueAsDate = new Date();
     }

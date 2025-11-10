@@ -2,7 +2,7 @@
 const timers = {};
 
 // listens for button pushes, creates new timer if one does not exist, otherwise starts/stops the stopwatch 
-const buttonListener = document.getElementById('tracker');
+const buttonListener = document.getElementById('habit-table');
 buttonListener.addEventListener('click', function(event) {
   buttonId = event.target.id;
 
@@ -44,7 +44,7 @@ class Timer{
     this.intervalId = setInterval(() => {
       this.elapsedTime = (new Date() - this.startTime);
       this.parseTimeToText();
-      document.getElementById('timerText' + this.buttonNumber).innerText = this.timerText;
+      document.getElementById('id_form-' + this.buttonNumber + '-duration').value = this.timerText;
     }, 17);
    }
 // stops the stopwatch
