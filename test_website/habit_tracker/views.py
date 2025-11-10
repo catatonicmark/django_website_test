@@ -1,19 +1,17 @@
 from django.shortcuts import render, redirect
-from django.forms import formset_factory
-from django.forms import modelformset_factory
-from .forms import habitForm
+from .forms import habitModelFormSet, initial_data
 from .models import habitModel
 
 
 # Create your views here.
 
 def get_habit(request):
-    habitFormSet = modelformset_factory(habitModel)
     if request.method == 'POST':
-        formset = habitFormSet(request.POST, request.FILES) 
+        formset = habitModelFormSet(request.POST, request.FILES, initial=initial_data) 
         if formset.is_valid():
+            formset.save()
             return redirect('/data/')
     else:
-        formset = habitFormSet()
+        formset = habitModelFormSet()
 
     return render(request, 'habit_tracker/tracker.html', {'formset': formset})
