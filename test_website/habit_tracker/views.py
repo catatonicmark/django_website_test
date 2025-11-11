@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
+from django.template import loader
+from django.http import HttpResponse
 from .forms import habitModelFormSet, initial_data
+from .models import habitModel
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -20,6 +23,9 @@ def get_habit(request):
 @api_view()
 @permission_classes([AllowAny]) # this allows Any User to access data, so this should just be used for testing purposes. 
 def data(request):
-    if request.method == 'POST':
-        return Response({"message": "Got some data!", "data": request.data})
-    return Response({"message": "Hello, world!"}) 
+    habits = habitModel.objects.all().values()
+    template = loader.get_template('habit_tracker/habit_view.html')
+    context = {
+        'habits': habits
+    }
+    return HttpResponse(template.render(context, request)) 
