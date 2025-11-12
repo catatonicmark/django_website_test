@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.db.models import Count, F, Sum, Avg
+from django.db.models.functions import ExtractYear, ExtractMonth, ExtractDay
+
 from .forms import habitModelFormSet, initial_data
 from .models import habitModel
+
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 
 # Create your views here.
@@ -28,4 +31,12 @@ def data(request):
     context = {
         'habits': habits
     }
-    return HttpResponse(template.render(context, request)) 
+    return HttpResponse(template.render(context, request))
+
+def get_filter_options(request):
+    grouped_habits = habitModel.objects.habit_name.values().distinct()
+    options = [habit_name for habit_name in grouped_habits] 
+
+    return JsonResponse({
+        "options": options,
+    })
