@@ -34,9 +34,8 @@ def data(request):
     return HttpResponse(template.render(context, request))
 
 def get_filter_options(request):
-    grouped_habits = habitModel.objects.habit_name.values().distinct()
-    options = [habit_name for habit_name in grouped_habits] 
+    habits = habitModel.objects.values_list('habit_name', flat=True).distinct() 
 
     return JsonResponse({
-        "options": options,
+        "habits": list(habits),
     })
