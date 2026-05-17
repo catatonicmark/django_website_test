@@ -42,5 +42,6 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("testapp/", include("testapp.urls")),
     path("habit_tracker/", include("habit_tracker.urls")),
+    path("main_page/", include("main_page.urls")),
     re_path(r'^imagefit/', include('imagefit.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
